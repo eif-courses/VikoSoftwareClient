@@ -4,6 +4,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@vueuse/nuxt',
-    '@nuxt/ui'
+    '@ant-design-vue/nuxt'
   ],
 })
