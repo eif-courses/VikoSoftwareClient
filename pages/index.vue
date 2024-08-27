@@ -2,24 +2,44 @@
 
 import type {CategoriesResponse} from "~/data/categories";
 
-const categories = ref<CategoriesResponse | null>(null);
-const { data, error, status } = await useFetch<CategoriesResponse>('/api/admin/categories');
+const temp = ref('')
+const signInMicrosoft = async () => {
+  window.location.href = `${useBaseUrl}/auth/microsoft`;
+};
 
-if (error.value) {
-  console.error('Error fetching categories:', error.value);
+
+const message = ref<CategoriesResponse>();
+
+
+async function testEndpoint() {
+
+  const token = localStorage.getItem('token');
+
+  try {
+    const {data} = await useFetch<CategoriesResponse>('/api/admin/categories');
+
+    console.log('Data:', data)
+
+    message.value = data
+  } catch (error) {
+    console.error('Error:', error)
+    message.value = 'Error: ' + error.message
+  }
 }
-categories.value = data.value;
+
+
 </script>
 
 <template>
-  <div>
-    <div v-if="status === 'pending'">Loading...</div>
-    <div v-if="error">Error: {{ error.message }}</div>
-    <ul v-if="categories">
-      <li v-for="category in categories.categories" :key="category.id">
-        {{ category.title }}
-      </li>
-    </ul>
-    <div v-if="!categories && (status !== 'pending') && !error">No categories available.</div>
-  </div>
+
+
+  <button @click="signInMicrosoft">
+    Sign in
+  </button>
+
+
+  <button @click="testEndpoint">Test Endpoint</button>
+  <p>{{ message }}</p>
+
+
 </template>
