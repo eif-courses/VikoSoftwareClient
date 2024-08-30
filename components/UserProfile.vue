@@ -27,6 +27,11 @@
     </div>
 
 
+
+    <div>
+      token : {{token}}
+    </div>
+
   </div>
 </template>
 <script setup>
@@ -34,6 +39,7 @@
 const userStore = useAppUser();
 const msAuth = useMSAuth();
 const isAuthenticated = msAuth.isAuthenticated();
+const token = ref('');
 
 const profileImage = ref("");
 
@@ -47,8 +53,11 @@ async function logout(accountId) {
 
 const getProfileImage = async () => {
   const accessToken = await msAuth.acquireTokenSilent({
-    scopes: ["User.Read"],
+    scopes: ["viko"],
   });
+
+  token.value = accessToken;
+
   const response = await fetch(
       "https://graph.microsoft.com/v1.0/me/photo/$value",
       {
