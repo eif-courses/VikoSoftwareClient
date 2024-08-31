@@ -19,7 +19,10 @@
         <a-breadcrumb-item>List</a-breadcrumb-item>
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }"><slot/></div>
+      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
+        <slot/>
+
+      </div>
     </a-layout-content>
     <a-layout-footer style="text-align: center">
       VikoSoftware ©2024 Created by @author m.gzegozevskis
@@ -28,6 +31,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 const selectedKeys = ref<string[]>(['2']);
 </script>
 <style scoped>

@@ -6,8 +6,9 @@
       <div v-if="profileImage">
         <img class="w-32 h-32 flex-shrink-0 mx-auto rounded-full ring-4 ring-green-300" :src="profileImage" alt="">
       </div>
-      <div class="justify-center items-center flex mx-auto text-gray-600 font-semibold  w-32 h-32 rounded-full bg-blue-200 uppercase :hover:bg-gray-300"
-           v-else>
+      <div
+          class="justify-center items-center flex mx-auto text-gray-600 font-semibold  w-32 h-32 rounded-full bg-blue-200 uppercase :hover:bg-gray-300"
+          v-else>
         {{ userStore.user.name?.match(/[A-Z]/g).join("") }}
       </div>
 
@@ -17,20 +18,23 @@
         <dd class="text-gray-500 text-sm">{{ userStore.user.username }}</dd>
         <dt class="sr-only">Email</dt>
       </dl>
-      <button @click="logout(userStore.user.homeAccountId)"
-              class="absolute bottom-0 right-0 mr-2 mb-2 bg-gray-100 p-2 rounded-lg shadow hover:bg-red-500 text-gray-500 hover:text-white hover:opacity-60 transition-all duration-500 font-extrabold font-mono">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-             stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
-        </svg>
-      </button>
+
+
+      <a-button danger @click="logout(userStore.user.homeAccountId)">
+        <LogoutOutlined/>
+        Atsijungti
+      </a-button>
+
+
     </div>
 
 
+    <p>{{ userStore.user }}</p>
 
     <div>
-      token : {{token}}
+      token : {{ token }}
     </div>
+
 
   </div>
 </template>
@@ -53,7 +57,7 @@ async function logout(accountId) {
 
 const getProfileImage = async () => {
   const accessToken = await msAuth.acquireTokenSilent({
-    scopes: ["viko"],
+    scopes: ["https://simuluthaudit.onmicrosoft.com/88142313-86bc-4399-99e8-390e3a07ce99/viko"],
   });
 
   token.value = accessToken;

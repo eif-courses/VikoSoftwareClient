@@ -1,5 +1,6 @@
 <template>
-  <button type="submit" @click="login"/>
+  <a-button @click="login" type="primary">  <WindowsFilled /> Prisijungti</a-button>
+
 </template>
 
 <script setup>
