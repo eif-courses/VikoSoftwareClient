@@ -1,5 +1,5 @@
 <template>
-  <LoginScreen />
+  <LoginForm />
 </template>
 <script setup>
 </script>

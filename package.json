@@ -12,7 +12,8 @@
   "dependencies": {
     "@ant-design-vue/nuxt": "^1.4.2",
     "@azure/msal-browser": "^3.22.0",
-     "nuxt": "^3.13.0",
+    "nuxt": "^3.13.0",
+    "qrcode": "^1",
     "vue": "latest"
   },
   "devDependencies": {

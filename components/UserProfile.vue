@@ -81,6 +81,21 @@ onMounted(async () => {
   if (isAuthenticated) {
     profileImage.value = await getProfileImage();
     userStore.value.userImage = profileImage.value;
+
+
+
+    const response = await fetch(
+        "http://localhost:5296/lecturers/categories",
+        {
+          headers: {
+            Authorization: `Bearer ${token.value}`,
+          },
+        }
+    );
+    console.log(response);
+
+
+
   }
 });
 
